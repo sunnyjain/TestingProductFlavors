@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.example.sunnyjain.productflavortest"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDirs('src/minApi21/java/src', 'src/minApi16/java/src', 'src/main/java/src')
+            }
+            res {
+                srcDirs('src/minApi21/res/src', 'src/minApi16/res/src', 'src/main/res/src')
+            }
+        }
+        minApi21 {
+            java {
+                srcDirs('src/minApi21/java/src', 'src/main/java/src')
+            }
+            res {
+                srcDirs('src/minApi21/res/src', 'src/main/res/src')
+            }
+        }
+        minApi16 {
+            java {
+                srcDirs('src/minApi16/java/src', 'src/main/java/src')
+            }
+            res {
+                srcDirs('src/minApi16/res/src', 'src/main/res/src')
+            }
+        }
+    }
+
+    flavorDimensions "api"
+    productFlavors {
+        minApi21 {
+            applicationIdSuffix  ".min21"
+            dimension "api"
+            minSdkVersion 21
+            //5 - minSdk 21, 2 - 07 - 06= 2.7.6 -> version name .
+            versionCode 520706
+        }
+        minApi16 {
+            applicationIdSuffix ".min16"
+            dimension "api"
+            minSdkVersion 16
+            //1 - minSdk 16, 2 - 05 - 00 = 2.6.4 -> version name.
+            versionCode 120604
+        }
+
+
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
