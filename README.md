@@ -1,5 +1,5 @@
 # Configuring Product Flavors 
-A few weeks back i started experimenting and tried to configure product flavors in my app.
+A few weeks back I started experimenting and tried to configure product flavors in my app.
 So basically I wanted an activity to behave and change the ui depending on the api level the user has.
 So i made product flavors minApi21 and minApi16 and added the activity class and its respective layout file in proper packages, below is the
 file structure.
